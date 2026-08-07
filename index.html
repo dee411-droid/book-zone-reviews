@@ -3,101 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Zone Reviews - Newsletter Archive</title>
+    <meta name="description" content="Catch up on Book Zone Reviews book spotlights, author features, and newsletter editions.">
+    <title>Book Zone Reviews | Newsletter Archive</title>
+
     <style>
+        :root {
+            --bzr-orange: #f36a10;
+            --bzr-orange-dark: #d95400;
+            --bzr-cream: #fff8ee;
+            --bzr-cream-deep: #fbe9d2;
+            --bzr-gold: #d89b33;
+            --bzr-black: #202124;
+            --bzr-gray: #676767;
+            --bzr-white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            margin: 0;
+            min-height: 100vh;
+            padding: 48px 20px;
+            color: var(--bzr-black);
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(243, 106, 16, 0.12),
+                    transparent 34%
+                ),
+                linear-gradient(
+                    145deg,
+                    var(--bzr-cream) 0%,
+                    #fffdf9 55%,
+                    var(--bzr-cream-deep) 100%
+                );
+            font-family: "Segoe UI", Arial, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
         }
-        .container {
-            max-width: 600px;
+
+        .archive-shell {
+            width: min(1000px, 100%);
             margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(216, 155, 51, 0.38);
+            border-radius: 20px;
+            box-shadow: 0 18px 50px rgba(76, 43, 18, 0.12);
         }
-        h1 {
-            color: #1a3a3a;
+
+        .brand-banner,
+        .brand-footer {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .archive-intro {
+            padding: 30px 36px 8px;
             text-align: center;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 15px;
-            margin-top: 0;
         }
-        p.subtitle {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-        .archive-list {
-            list-style: none;
-            padding: 0;
+
+        .archive-intro h1 {
             margin: 0;
+            color: var(--bzr-black);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.7rem, 5vw, 2.45rem);
+            line-height: 1.15;
         }
-        .archive-item {
-            margin-bottom: 15px;
-            border-bottom: 1px dashed #e2e8f0;
-            padding-bottom: 10px;
+
+        .subtitle {
+            max-width: 590px;
+            margin: 12px auto 0;
+            color: var(--bzr-gray);
+            font-size: 1rem;
         }
-        .archive-item a {
-            color: #2b6cb0;
+
+        .archive-content {
+            width: min(760px, 100%);
+            margin: 0 auto;
+            padding: 26px 36px 42px;
+        }
+
+        .section-heading {
+            margin: 0 0 20px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.45rem;
+        }
+
+        .archive-list {
+            display: grid;
+            gap: 16px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .archive-card {
+            position: relative;
+            display: block;
+            padding: 22px 92px 22px 24px;
+            color: var(--bzr-black);
+            background: var(--bzr-cream);
+            border: 1px solid #f1d3ad;
+            border-left: 6px solid var(--bzr-orange);
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+            transition:
+                transform 180ms ease,
+                box-shadow 180ms ease,
+                border-color 180ms ease;
         }
-        .archive-item a:hover {
-            text-decoration: underline;
-            color: #1a4373;
+
+        .archive-card:hover,
+        .archive-card:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--bzr-gold);
+            box-shadow: 0 10px 24px rgba(111, 65, 27, 0.12);
+            outline: none;
         }
-        .date {
-            font-size: 0.85rem;
-            color: #a0aec0;
-            margin-left: 10px;
+
+        .issue-type {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--bzr-orange-dark);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
+
+        .issue-title {
+            display: block;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .issue-note {
+            display: block;
+            margin-top: 5px;
+            color: var(--bzr-gray);
+            font-size: 0.9rem;
+        }
+
+        .status {
+            position: absolute;
+            top: 22px;
+            right: 20px;
+            padding: 5px 10px;
+            color: #633a00;
+            background: #f8ddaa;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .status.archive {
+            color: #4d4d4d;
+            background: #ece7df;
+        }
+
         footer {
+            color: #5d5148;
+            background: #fffdf9;
+            border-top: 4px solid var(--bzr-orange);
             text-align: center;
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: #718096;
+            font-size: 0.86rem;
+        }
+
+        .copyright {
+            margin: 0;
+            padding: 12px 20px 16px;
+            background: var(--bzr-cream-deep);
+        }
+
+        .copyright strong {
+            color: var(--bzr-orange-dark);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .archive-intro {
+                padding: 26px 20px 5px;
+            }
+
+            .archive-content {
+                padding: 28px 20px 32px;
+            }
+
+            .archive-card {
+                padding: 20px;
+            }
+
+            .status {
+                position: static;
+                display: inline-block;
+                margin-top: 12px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <main class="archive-shell">
 
-<div class="container">
-    <h1>📚 Book Zone Reviews</h1>
-    <p class="subtitle">Welcome to the newsletter archive. Grab a coffee and catch up on past issues!</p>
+        <header>
+            <img
+                class="brand-banner"
+                src="banner-optimized-full.jpg"
+                alt="Book Zone Reviews — Books kids love. Reviews you trust. Fun for the whole family."
+            >
+        </header>
 
-    <ul class="archive-list">
-<!-- ISSUE 3 -->
-        <li class="archive-item">
-            <a href="book-spotlight-template.html">Book Spotlight Edition</a>
-            <span class="date">- Recent</span>
-        </li>
-        
+        <div class="archive-intro">
+            <h1>Newsletter Archive</h1>
 
-<!-- ISSUE 2 -->
-        <li class="archive-item">
-            <a href="author-spotlight-template.html">Author Spotlight Edition</a>
-            <span class="date">- Recent</span>
-        </li>
-        
-        <!-- ISSUE 1 -->
-        <li class="archive-item">
-            <a href="template1.html">Welcome to Book Zone Reviews (Template 1)</a>
-            <span class="date">- Archive</span>
-        </li>
-    </ul>
+            <p class="subtitle">
+                Book spotlights, author features, and special editions—all
+                gathered in one cozy corner. Pick an issue and settle in!
+            </p>
+        </div>
 
-    <footer>
-        &copy; Book Zone Reviews. Hosted beautifully on GitHub Pages.
-    </footer>
-</div>
+        <section
+            class="archive-content"
+            aria-labelledby="archive-heading"
+        >
+            <h2
+                class="section-heading"
+                id="archive-heading"
+            >
+                Explore the Archive
+            </h2>
 
+            <ul class="archive-list">
+
+                <!-- ISSUE 3 -->
+                <li>
+                    <a
+                        class="archive-card"
+                        href="book-spotlight-template.html"
+                    >
+                        <span class="issue-type">
+                            Book Spotlight
+                        </span>
+
+                        <span class="issue-title">
+                            Book Spotlight Edition
+                        </span>
+
+                        <span class="issue-note">
+                            Discover a featured read worth adding to your list.
+                        </span>
+
+                        <span class="status">
+                            Recent
+                        </span>
+                    </a>
+                </li>
+
+                <!-- ISSUE 2 -->
+                <li>
+                    <a
+                        class="archive-card"
+                        href="author-spotlight-template.html"
+                    >
+                        <span class="issue-type">
+                            Author Spotlight
+                        </span>
+
+                        <span class="issue-title">
+                            Author Spotlight Edition
+                        </span>
+
+                        <span class="issue-note">
+                            Meet the storyteller behind the pages.
+                        </span>
+
+                        <span class="status">
+                            Recent
+                        </span>
+                    </a>
+                </li>
+
+                <!-- ISSUE 1 -->
+                <li>
+                    <a
+                        class="archive-card"
+                        href="template1.html"
+                    >
+                        <span class="issue-type">
+                            From the Archive
+                        </span>
+
+                        <span class="issue-title">
+                            Welcome to Book Zone Reviews
+                        </span>
+
+                        <span class="issue-note">
+                            Visit the original newsletter edition.
+                        </span>
+
+                        <span class="status archive">
+                            Archive
+                        </span>
+                    </a>
+                </li>
+
+            </ul>
+        </section>
+
+        <footer>
+            <img
+                class="brand-footer"
+                src="footer-optimized.jpg"
+                alt="Discover inspiring reads for kids and teens."
+            >
+
+            <p class="copyright">
+                &copy; 2026
+                <strong>Book Zone Reviews</strong>
+                &middot; Great books belong in every zone.
+            </p>
+        </footer>
+
+    </main>
 </body>
 </html>
