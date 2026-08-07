@@ -1,0 +1,219 @@
+<!--
+=====================================================================
+BOOK SPOTLIGHT TEMPLATE — Book Zone Reviews
+(Extra theme, Classic Editor — lives on the site, you link out to it)
+This is ONE of TWO separate template files:
+  - book-spotlight-template.html    (this file) — leads with the book
+  - author-spotlight-template.html  (sibling)   — leads with the author
+They are independent, standalone files. Use whichever fits the feature;
+there is no toggle or shared code between them.
+=====================================================================
+
+WHAT THIS IS
+A static page on your site, styled like a newsletter issue, that you
+publish once per book and then link to from social/email — NOT an
+actual HTML email. Normal modern CSS (Grid, gradients, etc.) is safe
+to use here; none of the "bulletproof email" table-layout restrictions
+apply.
+
+HOW THE TWO TEMPLATES ARE VISUALLY DISTINCT (on purpose)
+- A soft radial "spotlight glow" sits behind whichever image is this
+  series' actual subject: the BOOK COVER here (the author photo gets
+  no glow in this file). In author-spotlight-template.html it's the
+  reverse — the glow sits behind the author photo instead.
+- This file keeps the site's normal orange (#f36a10) as the accent
+  throughout — that's the "default"/baseline series. The Author
+  Spotlight file shifts its accent to plum specifically so the two
+  series are told apart at a glance.
+- Buttons, price, and the book-review styling stay this same orange
+  in BOTH templates — shopping/commerce should look and feel
+  consistent no matter which series someone's reading.
+
+HOW TO USE
+1. In WordPress, open the post/page in the Classic Editor.
+2. Switch to the "Text" tab (not "Visual").
+3. Paste this ENTIRE file (comments included) into that box.
+4. Update the "Issue" line and intro note near the top for this
+   feature — delete either if you don't want that framing.
+5. Publish/Preview.
+
+WHY THIS VERSION WON'T BREAK LIKE THE ORIGINAL DID
+- Every rule is scoped under ".bzr2" so Extra/Divi's theme CSS can't
+  override your headings, buttons, or icons.
+- No fixed-width columns or viewport media queries for layout — it
+  uses CSS Grid "auto-fit / minmax()" instead, which responds to the
+  ACTUAL rendered width of the block:
+    - Sidebar layout (narrower column)  -> stacks to 1 column
+    - Fullwidth layout (wide column)    -> spreads to 2-3 columns
+  automatically, no extra code, no guessing which layout you're using.
+- No external logo images/icon fonts anywhere except your OWN header
+  logo (see below) — no third-party icon fonts that can break.
+
+WHERE TO SWAP IN YOUR REAL IMAGES
+Search for "REPLACE ME" — there are 6 spots:
+  1) Site header banner (use the CROPPED version — trimmed top/bottom
+     so it reads as a short, wide banner instead of eating a full
+     screen of scroll height; upload as JPEG, not PNG — illustrated
+     art compresses far smaller as JPEG with no visible quality loss)
+  2) Featured book cover
+  3) Author photo
+  4) "More books" cover #1
+  5) "More books" cover #2
+  6) Footer image (optional — already close to the right shape for
+     this slot, no resizing needed; use an optimized JPEG here too —
+     this one compressed from 293KB down to 32KB with no visible loss)
+Replace the placeholder <div class="bzr2-ph">...</div> block with a
+real <img src="https://yoursite.com/wp-content/uploads/yourfile.jpg"
+alt="..."> tag.
+
+NOTE: this version has no author website/social links section. If you
+want those here too, copy the ".bzr2-social-label" / ".bzr2-social-row"
+block from author-spotlight-template.html into the author section
+below (you'll likely want to swap its plum color for this file's
+orange to match, or leave it plum as a small deliberate accent).
+
+A NOTE ON WORDPRESS "wpautop"
+WordPress sometimes auto-inserts stray <p> or <br> tags into raw HTML
+pasted in Classic Editor. This file is written as one continuous block
+(no blank lines between tags) specifically to avoid triggering that.
+=====================================================================
+-->
+<div class="bzr2">
+<style>
+.bzr2, .bzr2 *{box-sizing:border-box;}
+.bzr2{max-width:960px;margin:0 auto;padding:0;background:#fffaf2;color:#20252a;font-family:Arial,Helvetica,sans-serif;line-height:1.55;border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(55,35,20,.10);}
+.bzr2 h1,.bzr2 h2,.bzr2 h3{font-family:Georgia,"Times New Roman",serif;color:#18232d;margin:0 0 12px;line-height:1.15;}
+.bzr2 p{margin:0 0 14px;font-size:16px;}
+.bzr2 a{text-decoration:none;}
+.bzr2 img{max-width:100%;display:block;border-radius:6px;}
+.bzr2-eyebrow{color:#f36a10;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;margin-bottom:8px;}
+.bzr2-header{text-align:center;padding:22px 24px;background:linear-gradient(180deg,#fffdf9,#fff8ee);border-bottom:1px solid #efc79e;}
+.bzr2-header-logo{width:100%!important;max-width:100%!important;margin:0 auto;}
+.bzr2-ph.header{aspect-ratio:1536/630;}
+.bzr2-issue-line{margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:#8a6a3a;}
+.bzr2-intro{padding:18px 24px 0;text-align:center;}
+.bzr2-intro p{max-width:600px;margin:0 auto;font-style:italic;color:#5f666d;font-size:15px;}
+.bzr2-section{padding:28px 24px;}
+.bzr2-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;align-items:center;}
+.bzr2-cover-col{display:flex;justify-content:center;}
+.bzr2-spotlight-glow{display:flex;justify-content:center;padding:22px;border-radius:20px;background:radial-gradient(circle at 50% 42%,rgba(243,106,16,.28) 0%,rgba(243,106,16,0) 70%);}
+.bzr2-ph{width:100%;max-width:260px;aspect-ratio:2/3;background:repeating-linear-gradient(45deg,#f3e6d3,#f3e6d3 10px,#ece0c9 10px,#ece0c9 20px);border:2px dashed #d89b33;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;color:#8a6a3a;font-size:13px;font-weight:700;padding:10px;}
+.bzr2-ph.small{max-width:100%;aspect-ratio:2/3;font-size:12px;}
+.bzr2-ph.round{border-radius:50%;aspect-ratio:1/1;max-width:220px;}
+.bzr2-ph.wide{aspect-ratio:16/6;max-width:100%;}
+.bzr2-price strong{font-size:26px;color:#f36a10;margin-right:10px;}
+.bzr2-price del{color:#7a7a7a;font-size:16px;}
+.bzr2-btn{display:inline-block;background:#f36a10;color:#fff!important;font-weight:800;font-size:15px;padding:13px 26px;border-radius:7px;margin-top:8px;}
+.bzr2-btn.outline{background:#fff;color:#f36a10!important;border:2px solid #f36a10;}
+.bzr2-retailers{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;padding:20px 24px;border-top:1px solid #efc79e;border-bottom:1px solid #efc79e;}
+.bzr2-retailer{display:flex;align-items:center;justify-content:center;min-height:56px;background:#fff;border:1px solid #ead8c6;border-radius:10px;font-weight:800;letter-spacing:.02em;color:#20252a!important;font-size:14px;text-align:center;padding:8px;}
+.bzr2-story{margin:28px 24px;padding:26px;text-align:center;border:2px solid #f36a10;border-radius:16px;background:linear-gradient(180deg,#fffdf8,#fff7ed);}
+.bzr2-story p{max-width:640px;margin-left:auto;margin-right:auto;}
+.bzr2-author{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;align-items:center;padding:28px 24px;}
+.bzr2-more{background:linear-gradient(180deg,#fff3e4,#fff8ef);padding:30px 24px;}
+.bzr2-more h2{text-align:center;}
+.bzr2-book-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:20px;}
+.bzr2-book-card{background:#fffdf9;border:1px solid #efdfce;border-radius:14px;padding:18px;display:flex;gap:16px;}
+.bzr2-book-card .bzr2-ph{width:100px;flex-shrink:0;}
+.bzr2-book-card h3{font-size:18px;margin-bottom:6px;}
+.bzr2-book-card p{font-size:14px;margin-bottom:10px;}
+.bzr2-reviews{padding:30px 24px;}
+.bzr2-reviews h2{text-align:center;margin-bottom:22px;}
+.bzr2-review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;}
+.bzr2-review{position:relative;padding:8px 18px 8px 40px;border-left:3px solid #f36a10;}
+.bzr2-review p{font-size:15px;font-style:italic;}
+.bzr2-review-name{font-weight:700;font-size:14px;}
+.bzr2-stars{color:#f6a800;letter-spacing:2px;font-size:16px;}
+.bzr2-footer{padding:24px;text-align:center;background:linear-gradient(180deg,#fff9f1,#fceddb);}
+.bzr2-footer p{font-size:14px;color:#5f666d;margin:10px 0 0;}
+</style>
+<div class="bzr2-header">
+<!-- REPLACE ME 1: swap this div for <img class="bzr2-header-logo" src="YOUR-HEADER-BANNER-URL" alt="Book Zone Reviews"> -->
+<div class="bzr2-ph header bzr2-header-logo">HEADER BANNER<br>(replace me)</div>
+<!-- ISSUE LINE: edit or delete this per feature -->
+<div class="bzr2-issue-line">Book Spotlight &middot; Issue No. 0001 &middot; Month Year</div>
+</div>
+<!-- INTRO NOTE: a short line framing this issue; edit or delete this section per feature -->
+<div class="bzr2-intro"><p>Lorem ipsum dolor sit amet — a one or two sentence welcome note goes here, introducing this issue's featured book before the details below.</p></div>
+<div class="bzr2-section bzr2-hero">
+<div class="bzr2-spotlight-glow">
+<!-- REPLACE ME 2: swap this div for <img src="COVER-URL" alt="Book title cover"> -->
+<div class="bzr2-ph">FEATURED<br>BOOK COVER<br>(replace me)</div>
+</div>
+<div>
+<div class="bzr2-eyebrow">★ Featured Book ★</div>
+<h1>Lorem Ipsum Dolor: A Sit Amet Novel</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, sent on a journey she never imagined.</p>
+<div class="bzr2-price"><strong>$14.99</strong><del>$19.99</del></div>
+<a class="bzr2-btn" href="#">Shop Now</a>
+</div>
+</div>
+<div class="bzr2-retailers">
+<a class="bzr2-retailer" href="#">Retailer One</a>
+<a class="bzr2-retailer" href="#">Retailer Two</a>
+<a class="bzr2-retailer" href="#">Retailer Three</a>
+<a class="bzr2-retailer" href="#">Retailer Four</a>
+</div>
+<div class="bzr2-story">
+<div class="bzr2-eyebrow">The Story</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+<a class="bzr2-btn outline" href="#">Read the Full Excerpt</a>
+</div>
+<div class="bzr2-author">
+<div class="bzr2-cover-col">
+<!-- REPLACE ME 3: swap this div for <img src="AUTHOR-PHOTO-URL" alt="Author name"> -->
+<div class="bzr2-ph round">AUTHOR<br>PHOTO<br>(replace me)</div>
+</div>
+<div>
+<div class="bzr2-eyebrow">About the Author</div>
+<h2>Author Name Here</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+<a class="bzr2-btn outline" href="#">Read More</a>
+</div>
+</div>
+<div class="bzr2-more">
+<h2>★ More Books From This Author ★</h2>
+<div class="bzr2-book-grid">
+<div class="bzr2-book-card">
+<!-- REPLACE ME 4 -->
+<div class="bzr2-ph small">COVER<br>(replace me)</div>
+<div>
+<h3>Lorem Ipsum Two</h3>
+<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="bzr2-price"><strong>$12.99</strong><del>$16.99</del></div>
+<a class="bzr2-btn outline" href="#">Shop Now</a>
+</div>
+</div>
+<div class="bzr2-book-card">
+<!-- REPLACE ME 5 -->
+<div class="bzr2-ph small">COVER<br>(replace me)</div>
+<div>
+<h3>Lorem Ipsum Three</h3>
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+<div class="bzr2-price"><strong>$13.99</strong><del>$17.99</del></div>
+<a class="bzr2-btn outline" href="#">Shop Now</a>
+</div>
+</div>
+</div>
+</div>
+<div class="bzr2-reviews">
+<h2>★ Latest Book Reviews ★</h2>
+<div class="bzr2-review-grid">
+<div class="bzr2-review">
+<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt."</p>
+<div class="bzr2-review-name">— Reader Name, Verified Reader</div>
+<div class="bzr2-stars">★★★★★</div>
+</div>
+<div class="bzr2-review">
+<p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."</p>
+<div class="bzr2-review-name">— Reader Name, Verified Reader</div>
+<div class="bzr2-stars">★★★★★</div>
+</div>
+</div>
+</div>
+<div class="bzr2-footer">
+<!-- REPLACE ME 6: swap this div for <img src="FOOTER-IMAGE-URL" alt="..."> if desired, or delete it -->
+<div class="bzr2-ph wide">FOOTER IMAGE (optional — replace or delete me)</div>
+<p>Discover inspiring reads for kids and teens · <a href="#" style="color:#f36a10;">Subscribe</a></p>
+</div>
+</div>
