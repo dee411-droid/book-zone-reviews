@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catch up on Book Zone Reviews book spotlights, author features, and newsletter editions.">
+    <meta name="description" content="Catch up on Book Zone Reviews book reviews, book spotlights, author features, and newsletter editions.">
     <title>Book Zone Reviews | Newsletter Archive</title>
 
     <style>
@@ -124,9 +124,15 @@
             outline: none;
         }
 
-        .issue-type {
-            display: block;
+        .issue-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px;
             margin-bottom: 3px;
+        }
+
+        .issue-type {
             color: var(--bzr-orange-dark);
             font-size: 0.76rem;
             font-weight: 800;
@@ -143,10 +149,14 @@
         }
 
         .issue-note {
-            display: block;
-            margin-top: 5px;
             color: var(--bzr-gray);
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+        }
+
+        .issue-note::before {
+            content: "\00b7";
+            margin-right: 6px;
+            color: var(--bzr-gold);
         }
 
         .status {
@@ -168,6 +178,69 @@
             background: #ece7df;
         }
 
+
+        .connect-section {
+            padding: 30px 28px 34px;
+            background: var(--bzr-cream);
+            border-top: 1px solid #f1d3ad;
+            text-align: center;
+        }
+
+        .connect-section h2 {
+            margin: 0 0 8px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.45rem;
+        }
+
+        .connect-section p {
+            max-width: 620px;
+            margin: 0 auto 18px;
+            color: var(--bzr-gray);
+        }
+
+        .connect-buttons,
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .connect-button {
+            display: inline-block;
+            padding: 10px 16px;
+            color: var(--bzr-white);
+            background: var(--bzr-orange-dark);
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .connect-button.secondary {
+            color: var(--bzr-black);
+            background: var(--bzr-white);
+            border: 1px solid var(--bzr-gold);
+        }
+
+        .connect-button:hover,
+        .connect-button:focus-visible {
+            box-shadow: 0 6px 16px rgba(111, 65, 27, 0.16);
+            transform: translateY(-1px);
+        }
+
+        .social-label {
+            margin-top: 22px !important;
+            margin-bottom: 10px !important;
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        .social-links a {
+            color: var(--bzr-orange-dark);
+            font-weight: 700;
+            text-underline-offset: 3px;
+        }
+
         footer {
             color: #5d5148;
             background: #fffdf9;
@@ -184,6 +257,12 @@
 
         .copyright strong {
             color: var(--bzr-orange-dark);
+        }
+
+        .copyright a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
 
         @media (max-width: 600px) {
@@ -227,8 +306,9 @@
             <h1>Newsletter Archive</h1>
 
             <p class="subtitle">
-                Book spotlights, author features, and special editions—all
-                gathered in one cozy corner. Pick an issue and settle in!
+                Thoughtful book reviews, book spotlights, author features, and
+                special editions—all gathered in one cozy corner. Pick an issue
+                and settle in!
             </p>
         </div>
 
@@ -245,32 +325,6 @@
 
             <ul class="archive-list">
 
-                <!-- ISSUE 1 -->
-                <li>
-                    <a
-                        class="archive-card"
-                        href="https://mailchi.mp/470bf3dc98b7/welcome-to-book-zone-reviews"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="issue-type">
-                            Issue 1
-                        </span>
-
-                        <span class="issue-title">
-                            Welcome to Book Zone Reviews
-                        </span>
-
-                        <span class="issue-note">
-                            April 6, 2026
-                        </span>
-
-                        <span class="status archive">
-                            Newsletter
-                        </span>
-                    </a>
-                </li>
-
                 <!-- ISSUE 2 -->
                 <li>
                     <a
@@ -279,16 +333,36 @@
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span class="issue-type">
-                            Issue 2
+                        <span class="issue-meta">
+                            <span class="issue-type">Issue 2</span>
+                            <span class="issue-note">June 17, 2026</span>
                         </span>
 
                         <span class="issue-title">
                             A Quick Update
                         </span>
 
-                        <span class="issue-note">
-                            June 17, 2026
+                        <span class="status archive">
+                            Newsletter
+                        </span>
+                    </a>
+                </li>
+
+                <!-- ISSUE 1 -->
+                <li>
+                    <a
+                        class="archive-card"
+                        href="https://mailchi.mp/470bf3dc98b7/welcome-to-book-zone-reviews"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span class="issue-meta">
+                            <span class="issue-type">Issue 1</span>
+                            <span class="issue-note">April 6, 2026</span>
+                        </span>
+
+                        <span class="issue-title">
+                            Welcome to Book Zone Reviews
                         </span>
 
                         <span class="status archive">
@@ -300,6 +374,42 @@
             </ul>
         </section>
 
+
+        <section class="connect-section" aria-labelledby="connect-heading">
+            <h2 id="connect-heading">Stay Connected with Book Zone Reviews</h2>
+            <p>
+                Keep up with thoughtful book reviews, author features, and
+                bookish finds for kids, teens, and families.
+            </p>
+
+            <div class="connect-buttons">
+                <a class="connect-button" href="https://bookzonereviews.deeswrites.com/subscribe/">
+                    Subscribe to Book Zone Reviews
+                </a>
+                <a class="connect-button secondary" href="https://bookzonereviews.deeswrites.com/">
+                    Visit Book Zone Reviews
+                </a>
+                <a class="connect-button secondary" href="https://linktr.ee/deestafford">
+                    Follow BZR Everywhere
+                </a>
+                <a class="connect-button secondary" href="mailto:bookzonereviews@gmail.com">
+                    Email BZR
+                </a>
+            </div>
+
+            <p class="social-label">Find us on</p>
+            <nav class="social-links" aria-label="Book Zone Reviews social media">
+                <a href="https://bsky.app/profile/bookzonereviews.bsky.social">Bluesky</a>
+                <a href="https://www.facebook.com/bookzonereviews">Facebook</a>
+                <a href="https://www.instagram.com/bookzonereviews">Instagram</a>
+                <a href="https://www.tiktok.com/@bookzonereviews">TikTok</a>
+                <a href="https://x.com/bookzonereviews">X</a>
+                <a href="https://www.youtube.com/@bookzonereviews1128">YouTube</a>
+                <a href="https://www.goodreads.com/user/show/173976664-book-zone-reviews">Goodreads</a>
+                <a href="https://app.thestorygraph.com/profile/bookzonereviews">StoryGraph</a>
+            </nav>
+        </section>
+
         <footer>
             <img
                 class="brand-footer"
@@ -309,7 +419,7 @@
 
             <p class="copyright">
                 &copy; 2026
-                <strong>Book Zone Reviews</strong>
+                <strong><a href="https://bookzonereviews.deeswrites.com">Book Zone Reviews</a></strong>
                 &middot; Great books belong in every zone.
             </p>
         </footer>
