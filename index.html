@@ -178,6 +178,58 @@
             background: #ece7df;
         }
 
+
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            margin: 0 0 22px;
+        }
+
+        .pagination.bottom {
+            margin: 24px 0 0;
+        }
+
+        .page-link,
+        .page-current {
+            min-width: 38px;
+            padding: 7px 9px;
+            color: var(--bzr-orange-dark);
+            background: var(--bzr-white);
+            border: 1px solid #efc99d;
+            border-radius: 8px;
+            font: 700 0.92rem/1.2 "Segoe UI", Arial, sans-serif;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .page-link:hover,
+        .page-link:focus-visible {
+            color: var(--bzr-white);
+            background: var(--bzr-orange-dark);
+            outline: none;
+        }
+
+        .page-current {
+            color: var(--bzr-white);
+            background: var(--bzr-orange-dark);
+            border-color: var(--bzr-orange-dark);
+        }
+
+        .page-link[aria-disabled="true"] {
+            color: #aaa29a;
+            background: #f3efe9;
+            border-color: #e4ddd5;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .archive-card[hidden] {
+            display: none;
+        }
+
         footer {
             color: #5d5148;
             background: #fffdf9;
@@ -260,6 +312,8 @@
                 Explore the Archive
             </h2>
 
+            <nav class="pagination top" aria-label="Archive pages"></nav>
+
             <ul class="archive-list">
 
                 <!-- ISSUE 2 -->
@@ -305,6 +359,8 @@
                 </li>
 
             </ul>
+
+            <nav class="pagination bottom" aria-label="Archive pages"></nav>
         </section>
 
         <footer>
@@ -322,5 +378,63 @@
         </footer>
 
     </main>
+
+    <script>
+        (() => {
+            const issuesPerPage = 10;
+            const issues = [...document.querySelectorAll(".archive-list > li")];
+            const pageCount = Math.max(1, Math.ceil(issues.length / issuesPerPage));
+            const requestedPage = Number(new URLSearchParams(window.location.search).get("page")) || 1;
+            const currentPage = Math.min(Math.max(requestedPage, 1), pageCount);
+
+            const pageUrl = page => page === 1 ? "index.html" : `index.html?page=${page}`;
+
+            const renderPagination = nav => {
+                const control = (label, page, disabled, ariaLabel) => {
+                    const link = document.createElement("a");
+                    link.className = "page-link";
+                    link.textContent = label;
+                    link.href = disabled ? "#" : pageUrl(page);
+                    link.setAttribute("aria-label", ariaLabel);
+                    if (disabled) {
+                        link.setAttribute("aria-disabled", "true");
+                        link.tabIndex = -1;
+                    }
+                    return link;
+                };
+
+                nav.append(
+                    control("«", 1, currentPage === 1, "First archive page"),
+                    control("‹", currentPage - 1, currentPage === 1, "Previous archive page")
+                );
+
+                for (let page = 1; page <= pageCount; page += 1) {
+                    if (page === currentPage) {
+                        const current = document.createElement("span");
+                        current.className = "page-current";
+                        current.textContent = page;
+                        current.setAttribute("aria-current", "page");
+                        current.setAttribute("aria-label", `Archive page ${page}`);
+                        nav.append(current);
+                    } else {
+                        nav.append(control(String(page), page, false, `Archive page ${page}`));
+                    }
+                }
+
+                nav.append(
+                    control("›", currentPage + 1, currentPage === pageCount, "Next archive page"),
+                    control("»", pageCount, currentPage === pageCount, "Last archive page")
+                );
+            };
+
+            issues.forEach((issue, index) => {
+                issue.hidden = index < (currentPage - 1) * issuesPerPage ||
+                    index >= currentPage * issuesPerPage;
+            });
+
+            document.querySelectorAll(".pagination").forEach(renderPagination);
+        })();
+    </script>
+
 </body>
 </html>
